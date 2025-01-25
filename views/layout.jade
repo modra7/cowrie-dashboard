@@ -1,7 +1,37 @@
+//- views/layout.jade
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    title My Application
+    link(rel='icon', href='https://img.icons8.com/?size=100&id=80449&format=png&color=000000', type='image/x-icon')
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css')
+    style.
+      h1{
+        color: orange;
+        scale: 1.2;
+        padding-left: 1em;
+      }
+      .active {
+        font-weight: bolder;
+        scale: 1.2;
+        padding-left: 1em;
+        color: orange;
+      }
   body
-    block content
+    .flex.max-w-full.bg-gray-800.text-white
+      // Sidebar
+      .sidebar.w-300px.bg-gray-900.p-6.h-screen
+        h2.text-2xl.text-orange Cowrie Dashboard
+        hr
+        ul
+          li(class=activeClass.home ? 'active' : '') 
+            a(href='/') Home
+          li(class=activeClass.users ? 'active' : '') 
+            a(href='/users') Users
+          li(class=activeClass.logs ? 'active' : '') 
+            a(href='/logs') Logs
+          li(class=activeClass.stats ? 'active' : '') 
+            a(href='/stats') Stats
+      // Main content area
+      .w-bg.pt-6.pl-8
+        block content

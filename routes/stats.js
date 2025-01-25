@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+// routes/stats.js
+const express = require('express');
+const router = express.Router();
 
-/* GET about page. */
-router.get('/', function(req, res, next) {
-    res.render('stats', { title: 'Statistics' });
+// Stats route
+router.get('/', (req, res) => {
+    res.render('stats');
 });
 
 module.exports = router;

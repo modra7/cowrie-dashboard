@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+// routes/logs.js
+const express = require('express');
+const router = express.Router();
 
-/* GET about page. */
-router.get('/', function(req, res, next) {
-    res.render('logs', { title: 'Logs' });
+// Logs route
+router.get('/', (req, res) => {
+    res.render('logs');
 });
 
 module.exports = router;
