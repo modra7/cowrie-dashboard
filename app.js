@@ -63,6 +63,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var statsRouter = require('./routes/stats');
 var logsRouter = require('./routes/logs');
+var loginRouter = require('./routes/login');
 
 var app = express();
 
@@ -77,7 +78,8 @@ app.use((req, res, next) => {
         home: req.path === '/',
         users: req.path === '/users',
         logs: req.path === '/logs',
-        stats: req.path === '/stats'
+        stats: req.path === '/stats',
+        login: req.path === '/login'
     };
     next();
 });
@@ -91,8 +93,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Define routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/logs', logsRouter);
 app.use('/stats', statsRouter);
+app.use('/logs', logsRouter);
+app.use('/login', loginRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
