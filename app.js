@@ -4,6 +4,61 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//Setting up database stuff
+const { Sequelize, DataTypes } = require('sequelize');
+
+const sequelize = new Sequelize('honeypot_logs', 'armitage', 'password', {
+    host: 'localhost',
+    dialect: 'postgres',
+  });
+
+
+//esting database connection
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connection to the database has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
+
+  const Command = sequelize.define('Command', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true, // Automatically increment the ID
+    },
+    command: {
+      type: DataTypes.TEXT, // Use TEXT for command
+      allowNull: false,
+    },
+    ip_address: {
+      type: DataTypes.INET, // Use INET for IP address
+      allowNull: false,
+    },
+    timestamp: {
+      type: DataTypes.DATE, // Use DATE for timestamp
+      allowNull: false,
+    },
+    honeypot_server: {
+      type: DataTypes.STRING(255), // Use STRING with a max length of 255
+      allowNull: false,
+    },
+  }, {
+    tableName: 'commands', // Specify the table name if it doesn't match the model name
+  });
+  
+  // Sync models with the database
+  sequelize.sync()
+    .then(() => {
+      console.log('Database & tables created!');
+    })
+    .catch(err => {
+      console.error('Error creating database tables:', err);
+    });
+  
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var statsRouter = require('./routes/stats');
@@ -62,3 +117,9 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
+process.on('SIGINT', async () => {
+    await sequelize.close();
+    console.log('PostgreSQL connection closed');
+    process.exit(0);
+  });
