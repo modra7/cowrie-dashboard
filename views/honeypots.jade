@@ -3,4 +3,17 @@ extends layout
 
 block content
   h1.text-2xl Honeypots
-  p This is the main content area for the Honeypots page.
+  if honeypots && honeypots.length > 0
+    .flex.flex-wrap
+      each honeypot in honeypots
+        .card.bg-base-100.shadow-xl.m-4
+          .card-body
+            h2.card-title= honeypot.hostname || 'Unknown Hostname'
+            p IP: #{honeypot.ip || 'N/A'}
+            p Last updated: #{(function() { try { return timeAgo(honeypot.updatedAt); } catch (e) { return 'Error'; } })() || 'N/A'}
+            .card-actions
+              a.btn.btn-primary(href=`/honeypots/${honeypot.id}`) View Details
+              a.btn.btn-secondary(href=`/honeypots/${honeypot.id}/edit`) Edit
+              button.btn.btn-error(onclick=`deleteHoneypot(${honeypot.id})`) Delete
+  else
+    p No honeypots found.
