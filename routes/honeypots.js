@@ -1,10 +1,10 @@
-// routes/users.js
+// routes/honeypots.js
 const express = require('express');
 const router = express.Router();
 
-// Users route
+// Honeypots route
 router.get('/', (req, res) => {
-    res.render('users');
+    res.render('honeypots');
 });
 
 module.exports = router;

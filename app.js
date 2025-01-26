@@ -60,7 +60,7 @@ sequelize.authenticate()
   
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var honeypotsRouter = require('./routes/honeypots');
 var statsRouter = require('./routes/stats');
 var logsRouter = require('./routes/logs');
 var loginRouter = require('./routes/login');
@@ -76,7 +76,7 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 app.use((req, res, next) => {
     res.locals.activeClass = {
         home: req.path === '/',
-        users: req.path === '/users',
+        honeypots: req.path === '/honeypots',
         logs: req.path === '/logs',
         stats: req.path === '/stats',
         login: req.path === '/login'
@@ -92,7 +92,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Define routes
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/honeypots', honeypotsRouter);
 app.use('/stats', statsRouter);
 app.use('/logs', logsRouter);
 app.use('/login', loginRouter);
