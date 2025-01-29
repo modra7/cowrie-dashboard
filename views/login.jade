@@ -7,7 +7,7 @@ html
     link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css')
     style.
       body{
-        text-color:white;
+        color:black;
       }
       p{
         padding-top: 1em;
@@ -19,9 +19,9 @@ html
   body.flex.max-w-full.bg-gray-800.text-white.items-center.justify-center.h-screen
     form(method="POST", action="/")
         input(type="hidden", name="_method", value="PUT")
-        p Name
-        input(type="text", name="name")
+        p Username
+        input(type="text", name="name").text-black
         p Password
-        input(type="password", name="password")
+        input(type="password", name="password").text-black
         p
         input(type="submit")
