@@ -14,6 +14,6 @@ block content
             .card-actions
               a.btn.btn-success(href=`/honeypots/${honeypot.id}`).view-details View Details
               a.btn.btn-warning(href=`/honeypots/${honeypot.id}/edit`).edit Edit
-              button.btn.btn-error(onclick=`de leteHoneypot(${honeypot.id})`).delete Delete
+              button.btn.btn-error(onclick=`deleteHoneypot(${honeypot.id})`).delete Delete
   else
     p No honeypots found.
