@@ -79,9 +79,6 @@ Once the dashboard is running, you can access it through your web browser. The d
 
 Contributions are welcome! If you have suggestions for improvements or want to report a bug, please open an issue or submit a pull request.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
